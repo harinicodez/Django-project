@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .article-card {
+            display: flex;
+            flex-direction: row;
+            background-color: #fff;
+            margin: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        .article-card:hover {
+            transform: scale(1.02);
+        }
+        .article-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px;
+        }
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .article-right {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .article-card h1 {
+            font-size: 1.75rem;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+        .article-card p.description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+        .article-card p.content {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        .no-articles {
+            font-size: 1.5rem;
+            color: #888;
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    {% for article in data %}
+        <div class="article-card">
+            <div class="article-left">
+                <h1>{{ article.fields.title }}</h1>
+                <img src="{{ article.fields.image_url }}" alt="Article Image" class="article-image" />
+            </div>
+            <div class="article-right">
+                <p class="description">{{ article.fields.description }}</p>
+                <p class="content">{{ article.fields.data }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <div class="no-articles">
+            No articles yet
+        </div>
+    {% endfor %}
+
+</body>
+</html>
